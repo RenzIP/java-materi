@@ -2,10 +2,16 @@ public class SortExample {
     public static void main(String[] args) {
         int[] numbers = { 40, 7, 59, 4, 1 };
         displayValues(numbers);
-        selectionSort(numbers);
         System.out.println("Sorted values:");
         displayValues(numbers);
+        // Now we will sort the numbers again using bubble sort
         bubbleSort(numbers);
+        System.out.println("Sorted values using bubble sort:");
+        displayValues(numbers);
+        // Now we will sort the numbers again using merge sort
+        mergeSort(numbers, 0, numbers.length - 1);
+        System.out.println("Sorted values using merge sort:");
+        displayValues(numbers);
     }// end method main
 
     static void bubbleSort(int[] numbers) {
@@ -22,6 +28,63 @@ public class SortExample {
         } // endfor
     }// end method bubbleSort
 
+    static void mergeSort(int[] numbers, int left, int right) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+    
+            // Recursively sort the left and right halves
+            mergeSort(numbers, left, mid);
+            mergeSort(numbers, mid + 1, right);
+    
+            // Merge the sorted halves
+            merge(numbers, left, mid, right);
+        }
+    }
+    
+    static void merge(int[] numbers, int left, int mid, int right) {
+        int n1 = mid - left + 1;
+        int n2 = right - mid;
+    
+        // Create temporary arrays
+        int[] leftArray = new int[n1];
+        int[] rightArray = new int[n2];
+    
+        // Copy data to temporary arrays
+        for (int i = 0; i < n1; i++) {
+            leftArray[i] = numbers[left + i];
+        }
+        for (int j = 0; j < n2; j++) {
+            rightArray[j] = numbers[mid + 1 + j];
+        }
+    
+        // Merge the temporary arrays back into the original array
+        int i = 0, j = 0, k = left;
+        while (i < n1 && j < n2) {
+            if (leftArray[i] <= rightArray[j]) {
+                numbers[k] = leftArray[i];
+                i++;
+            } else {
+                numbers[k] = rightArray[j];
+                j++;
+            }
+            k++;
+        }
+    
+        // Copy remaining elements of leftArray, if any
+        while (i < n1) {
+            numbers[k] = leftArray[i];
+            i++;
+            k++;
+        }
+    
+        // Copy remaining elements of rightArray, if any
+        while (j < n2) {
+            numbers[k] = rightArray[j];
+            j++;
+            k++;
+        }
+    }
+    
     static void selectionSort(int[] numbers) {
         int indexMin = 0; // the index of the smallest number
         for (int i = 0; i < numbers.length; i++) {
