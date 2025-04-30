@@ -5,7 +5,22 @@ public class SortExample {
         selectionSort(numbers);
         System.out.println("Sorted values:");
         displayValues(numbers);
+        bubbleSort(numbers);
     }// end method main
+
+    static void bubbleSort(int[] numbers) {
+        for (int i = 0; i < numbers.length; i++) {
+            for (int j = 0; j < numbers.length - 1; j++) {
+                // if the numbers are not in order
+                if (numbers[j] > numbers[j + 1]) {
+                    // swap the numbers
+                    int temp = numbers[j];
+                    numbers[j] = numbers[j + 1];
+                    numbers[j + 1] = temp;
+                } // endif
+            } // endfor
+        } // endfor
+    }// end method bubbleSort
 
     static void selectionSort(int[] numbers) {
         int indexMin = 0; // the index of the smallest number
