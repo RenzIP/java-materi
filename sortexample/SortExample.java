@@ -39,27 +39,30 @@ public class SortExample {
     static void bubbleSort(int[] numbers) {
         for (int i = 0; i < numbers.length; i++) {
             for (int j = 0; j < numbers.length - 1; j++) {
-                // if the numbers are not in order
                 if (numbers[j] > numbers[j + 1]) {
-                    // swap the numbers
                     int temp = numbers[j];
                     numbers[j] = numbers[j + 1];
                     numbers[j + 1] = temp;
-                } // endif
-            } // endfor
-        } // endfor
-    }// end method bubbleSort
+                }
+            }
+            // Print array after each pass
+            System.out.print("Bubble Sort - Pass " + (i + 1) + ": ");
+            displayValues(numbers);
+        }
+    }
 
     static void mergeSort(int[] numbers, int left, int right) {
         if (left < right) {
             int mid = (left + right) / 2;
     
-            // Recursively sort the left and right halves
             mergeSort(numbers, left, mid);
             mergeSort(numbers, mid + 1, right);
     
-            // Merge the sorted halves
             merge(numbers, left, mid, right);
+    
+            // Print array after merging
+            System.out.print("Merge Sort - Merged [" + left + ", " + right + "]: ");
+            displayValues(numbers);
         }
     }
     
@@ -108,20 +111,22 @@ public class SortExample {
     }
     
     static void selectionSort(int[] numbers) {
-        int indexMin = 0; // the index of the smallest number
         for (int i = 0; i < numbers.length; i++) {
-            indexMin = i;
+            int indexMin = i;
             for (int j = i + 1; j < numbers.length; j++) {
-                if (numbers[j] < numbers[indexMin]) {// if we find a smaller int,
-                    indexMin = j; // set it as the min
-                } // endif
-            } // endforp
-              // we have the index of the smallest int and can swap the values
-            int temp = numbers[i]; // use temp to store the value
+                if (numbers[j] < numbers[indexMin]) {
+                    indexMin = j;
+                }
+            }
+            int temp = numbers[i];
             numbers[i] = numbers[indexMin];
             numbers[indexMin] = temp;
-        } // endfor
-    }// end method selectionSort
+    
+            // Print array after each pass
+            System.out.print("Selection Sort - Pass " + (i + 1) + ": ");
+            displayValues(numbers);
+        }
+    }
 
     static void displayValues(int[] numbers) {
         for (int i = 0; i < numbers.length; i++) {
