@@ -1,18 +1,40 @@
 public class SortExample {
     public static void main(String[] args) {
         int[] numbers = { 40, 7, 59, 4, 1 };
-        displayValues(numbers);
-        System.out.println("Sorted values:");
-        displayValues(numbers);
-        // Now we will sort the numbers again using bubble sort
-        bubbleSort(numbers);
-        System.out.println("Sorted values using bubble sort:");
-        displayValues(numbers);
-        // Now we will sort the numbers again using merge sort
-        mergeSort(numbers, 0, numbers.length - 1);
-        System.out.println("Sorted values using merge sort:");
-        displayValues(numbers);
-    }// end method main
+    
+        // Bubble Sort
+        int[] bubbleSortNumbers = numbers.clone();
+        System.out.println("Original values for Bubble Sort:");
+        displayValues(bubbleSortNumbers);
+        long startTime = System.nanoTime();
+        bubbleSort(bubbleSortNumbers);
+        long endTime = System.nanoTime();
+        System.out.println("Sorted values using Bubble Sort:");
+        displayValues(bubbleSortNumbers);
+        System.out.println("Bubble Sort execution time: " + (endTime - startTime) + " nanoseconds\n");
+    
+        // Merge Sort
+        int[] mergeSortNumbers = numbers.clone();
+        System.out.println("Original values for Merge Sort:");
+        displayValues(mergeSortNumbers);
+        startTime = System.nanoTime();
+        mergeSort(mergeSortNumbers, 0, mergeSortNumbers.length - 1);
+        endTime = System.nanoTime();
+        System.out.println("Sorted values using Merge Sort:");
+        displayValues(mergeSortNumbers);
+        System.out.println("Merge Sort execution time: " + (endTime - startTime) + " nanoseconds\n");
+    
+        // Selection Sort
+        int[] selectionSortNumbers = numbers.clone();
+        System.out.println("Original values for Selection Sort:");
+        displayValues(selectionSortNumbers);
+        startTime = System.nanoTime();
+        selectionSort(selectionSortNumbers);
+        endTime = System.nanoTime();
+        System.out.println("Sorted values using Selection Sort:");
+        displayValues(selectionSortNumbers);
+        System.out.println("Selection Sort execution time: " + (endTime - startTime) + " nanoseconds\n");
+    }
 
     static void bubbleSort(int[] numbers) {
         for (int i = 0; i < numbers.length; i++) {
